@@ -1,8 +1,15 @@
-import React from 'react'
-import css from './Header-module.css'
-import Logo from '../assets/logo.png'
+import React, { useState } from 'react'
+import css from '../header/Header-module.css'
+import Logo from '../../assets/logo.png'
 import {CgShoppingBag} from 'react-icons/cg'
+import {GoThreeBars} from 'react-icons/go'
 const Header = () => {
+
+  const [ShowMenu, setShowMenu] = useState(true)
+
+  const toggleMenu = () => {
+       setShowMenu((ShowMenu)=>!ShowMenu)
+  }
   return (
    <div className="container">
     <div className="logo">
@@ -11,8 +18,12 @@ const Header = () => {
     </div>
     
     <div className="right">
-        <div className="menu">
-          <ul className="menu">
+
+      <div className="bars" onClick={toggleMenu}>
+            <GoThreeBars/>
+      </div>
+        
+          <ul className="menu" style={{display: ShowMenu? 'inherit': 'none'}}>
             <li>Collections</li>
             <li>Brands</li>
             <li>New</li>
@@ -21,7 +32,6 @@ const Header = () => {
 
           </ul>
 
-        </div>
 
         <input type="text" className="search" placeholder="Search" />
 
